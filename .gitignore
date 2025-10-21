@@ -1,0 +1,8 @@
+# Environment variables
+.env
+
+# Local files
+local-files/
+
+# n8n data
+n8n_data/
