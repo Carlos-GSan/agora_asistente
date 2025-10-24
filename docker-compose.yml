@@ -15,6 +15,7 @@ services:
       - NODE_ENV=production
       - WEBHOOK_URL=${WEBHOOK_URL}
       - GENERIC_TIMEZONE=${TIMEZONE}
+      - EDITOR_BASE_URL=${EDITOR_BASE_URL}
     volumes:
       - n8n_data:/home/node/.n8n
       - ./local-files:/files
@@ -27,4 +28,6 @@ volumes:
 
 networks:
   app_net:
-    driver: bridge
+    external: true
+
+    
