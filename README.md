@@ -68,6 +68,53 @@ docker-compose up -d
 - `n8n_data`: Almacena los datos de n8n (workflows, credenciales, etc.)
 - `./local-files`: Carpeta para archivos locales accesibles desde n8n
 
+### Ngrok para pruebas webhook
+#### Instalación de Ngrok
+
+**macOS:**
+```bash
+# Usando Homebrew
+brew install ngrok/ngrok/ngrok
+
+# O descarga directamente desde https://ngrok.com/download
+```
+
+**Windows:**
+```bash
+# Usando Chocolatey
+choco install ngrok
+
+# O descarga el ejecutable desde https://ngrok.com/download
+```
+
+#### Configuración de Ngrok
+
+1. **Crea una cuenta en [ngrok.com](https://ngrok.com)**
+
+2. **Obtén tu token de autenticación:**
+   ```bash
+   ngrok config add-authtoken TU_TOKEN_AQUI
+   ```
+
+3. **Inicia el túnel para n8n:**
+   ```bash
+   ngrok http 5678
+   ```
+
+4. **Copia la URL pública que genera ngrok** (ejemplo: `https://abc123.ngrok.io`)
+
+5. **Actualiza tu `.env` con la URL de ngrok:**
+   ```
+   WEBHOOK_URL=https://abc123.ngrok.io
+   ```
+
+6. **Reinicia n8n:**
+   ```bash
+   docker-compose restart
+   ```
+
+> **Nota**: La URL de ngrok cambia cada vez que lo reinicias (versión gratuita). Para una URL fija, considera la versión de pago.
+
 ## Seguridad
 
 ⚠️ **IMPORTANTE**: Cambia las credenciales por defecto antes de usar en producción.
